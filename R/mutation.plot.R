@@ -10,10 +10,12 @@
 #' @param haplotypes the color of dots that you want to place along the mutation line to indicate some factor such as haplotype that the mutation belongs to
 #' @export
 #' @examples
-#'
-#'
+#' data(AT5G62640)
+#' genemodel.plot(AT5G62640, 25149433, 25152541, "reverse")
+#' mutation.plot(25149593, 25149593, text="P->S", col="red", haplotype="blue")
 
-mutation.plot<-function(start, stop, text, drop=-0.15, col, haplotypes=NULL)
+
+mutation.plot<-function(start, stop, text="", drop=-0.15, col="red", haplotypes=NULL)
 {
   rect(start, .2, stop, drop+.01*length(haplotypes), col=col, border=col)
   text( stop, drop, text, cex=0.7, col=col, pos=4, offset=0.1+.1*length(haplotypes))

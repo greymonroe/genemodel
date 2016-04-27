@@ -7,7 +7,7 @@
 genemodel.plot(model, start, bpstop, orientation)
 }
 \arguments{
-\item{model}{data.frame containing model information. Required columns are "feature", "start"}
+\item{model}{data.frame containing model information. Required columns are "type", "coordinates"}
 
 \item{start}{start position}
 
@@ -19,7 +19,7 @@ genemodel.plot(model, start, bpstop, orientation)
 This function plots a gene model
 }
 \examples{
-
-
+data(AT5G62640)
+genemodel.plot(AT5G62640, 25149433, 25152541, "reverse")
 }
 

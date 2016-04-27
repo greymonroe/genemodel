@@ -2,14 +2,15 @@
 #'
 #' This function plots a gene model
 #'
-#' @param model data.frame containing model information. Required columns are "feature", "start"
+#' @param model data.frame containing model information. Required columns are "type", "coordinates"
 #' @param start start position
 #' @param bpstop stop position
 #' @param orientation either "foward" or "reverse" indicates the direction of transcription
 #' @export
 #' @examples
-#'
-#'
+#' data(AT5G62640)
+#' genemodel.plot(AT5G62640, 25149433, 25152541, "reverse")
+
 
 genemodel.plot<-function(model, start, bpstop, orientation)
 {

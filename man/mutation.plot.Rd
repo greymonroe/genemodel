@@ -4,7 +4,8 @@
 \alias{mutation.plot}
 \title{mutation.plot}
 \usage{
-mutation.plot(start, stop, text, drop = -0.15, col, haplotypes = NULL)
+mutation.plot(start, stop, text = "", drop = -0.15, col = "red",
+  haplotypes = NULL)
 }
 \arguments{
 \item{start}{start position}
@@ -23,7 +24,8 @@ mutation.plot(start, stop, text, drop = -0.15, col, haplotypes = NULL)
 This function plots mutations along genemodels created with genemodel.plot
 }
 \examples{
-
-
+data(AT5G62640)
+genemodel.plot(AT5G62640, 25149433, 25152541, "reverse")
+mutation.plot(25149593, 25149593, text="P->S", col="red", haplotype="blue")
 }
 
