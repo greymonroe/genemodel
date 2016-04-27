@@ -23,7 +23,7 @@ mutation.plot(start, stop, text, drop = -0.15, col, haplotypes = NULL)
 This function plots mutations along genemodels created with genemodel.plot
 }
 \examples{
-mutation.plot()
+
 
 }
 

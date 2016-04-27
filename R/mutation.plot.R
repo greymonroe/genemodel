@@ -10,7 +10,7 @@
 #' @param haplotypes the color of dots that you want to place along the mutation line to indicate some factor such as haplotype that the mutation belongs to
 #' @export
 #' @examples
-#' mutation.plot()
+#'
 #'
 
 mutation.plot<-function(start, stop, text, drop=-0.15, col, haplotypes=NULL)
