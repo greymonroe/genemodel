@@ -1,10 +1,10 @@
 Package: genemodel
-Title: What the Package Does (one line, title case)
+Title: Generates plots of gene models from TAIR database
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-Depends:
-    R (>= 3.2.5)
-License: What license is it under?
+Authors@R: person("J" "Grey", "Monroe", email = "greymonroe@gmail.com", role = c("aut", "cre"))
+Description: This package is meant to generate attractive and accurate plots of gene models. Users can also plot the position of mutations and other features.
+Depends: R (>= 3.2.5)
+Imports: stringr
+License: GPL-2
 LazyData: true
 RoxygenNote: 5.0.1
