@@ -6,15 +6,16 @@
 #' @param start start position
 #' @param bpstop stop position
 #' @param orientation either "foward" or "reverse" indicates the direction of transcription
+#' @param xaxis default is TRUE and adds axis above gene model showing position
 #' @export
 #' @examples
 #' data(AT5G62640)
-#' genemodel.plot(AT5G62640, 25149433, 25152541, "reverse")
+#' genemodel.plot(AT5G62640, 25149433, 25152541, "reverse", xaxis=T)
 
 
-genemodel.plot<-function(model, start, bpstop, orientation)
+genemodel.plot<-function(model, start, bpstop, orientation, xaxis=T)
 {
-  par(mar=c(.1,1,.1,1), cex=1)
+  par(mar=c(1,1,3,1), cex=1)
   model<-cbind(model[,1], as.data.frame(stringr::str_split_fixed(model$coordinates, "-", 2)))
   colnames(model)<-c("feature", "start", "bpstop")
   model$start<-as.numeric(as.character(model$start));model$bpstop<-as.numeric(as.character(model$bpstop))
@@ -29,8 +30,7 @@ genemodel.plot<-function(model, start, bpstop, orientation)
     model<-model[which(model$feature!="ORF"),]
     model<-model[order(model$newstart),]
 
-    plot(1, type="l",axes=FALSE,ann=FALSE, xlim=c(start-.03*length, bpstop), ylim=c(-1, 1))
-
+    plot(1, type="l",axes=F,ann=FALSE, xlim=c(start-.03*length, bpstop), ylim=c(-1, .5))
     for (i in 2:nrow(model))
     {
       type<-model$feature[i]
@@ -75,8 +75,7 @@ genemodel.plot<-function(model, start, bpstop, orientation)
     model<-model[which(model$feature!="ORF"),]
     model<-model[order(model$newstop, decreasing = T),]
 
-    plot(1, type="l",axes=FALSE,ann=FALSE, xlim=c(start, bpstop+.03*length), ylim=c(-1, 1))
-
+    plot(1, type="l",yaxt='n',ann=FALSE, xlim=c(start, bpstop+.03*length), ylim=c(-1, .5))
     for (i in 2:nrow(model))
     {
       type<-model$feature[i]
@@ -112,4 +111,8 @@ genemodel.plot<-function(model, start, bpstop, orientation)
     if (endtype=="coding_region") {polygon(x,y, border = "dodgerblue4" , col ="steelblue3" , lwd=1) }
     else {polygon(x,y, border = "dodgerblue4" , col ="lightsteelblue1" , lwd=1)}
   }
+  if (xaxis==T)
+  {
+    Axis(side=3, labels=T)
+    }
 }

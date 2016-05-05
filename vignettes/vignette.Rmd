@@ -57,7 +57,7 @@ Before we can plot the gene, we need to extract some other information from the 
 We now have the information necessary to plot the gene with `genemodel.plot`
 ```{r, fig.width=7.5, fig.height=2}
 par(mar=c(.1,1,.1,1), cex=1)
-genemodel.plot(model=AT5G62640, start=25149433, bpstop=25152541, orientation="reverse")
+genemodel.plot(model=AT5G62640, start=25149433, bpstop=25152541, orientation="reverse", xaxis=T)
 ```
 
 `genemodel.plot` automatically recongizes the types of gene features and plots them in accurate positions and orientation. `genemodel.plot` uses the same color scheme as TAIR to color the gene features. UTRs are colored light blue, exons are colored dark blue and introns are indicated by the bent line. The direction of transcripton is also marked in way consitent with TAIR notation by the pointed end of the gene model. By only plotting UTRs, exons and introns, `genemodel.plot` ignores the 'ORF' and "coding region' feature types as they are redundant. 
