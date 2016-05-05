@@ -14,6 +14,7 @@
 
 genemodel.plot<-function(model, start, bpstop, orientation)
 {
+  par(mar=c(.1,1,.1,1), cex=1)
   model<-cbind(model[,1], as.data.frame(stringr::str_split_fixed(model$coordinates, "-", 2)))
   colnames(model)<-c("feature", "start", "bpstop")
   model$start<-as.numeric(as.character(model$start));model$bpstop<-as.numeric(as.character(model$bpstop))

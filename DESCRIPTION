@@ -3,10 +3,13 @@ Title: Gene model plotting in R
 Date: 2016-04-27
 Version: 0.0.0.9000
 Authors@R: person("J Grey", "Monroe", email = "greymonroe@gmail.com", role = c("aut", "cre"))
-Description: This package is meant to generate attractive and accurate plots of gene models. Users can also plot the position of mutations and other features.
+Description: This package is meant to generate attractive and accurate plots of gene models. Users can also plot the position of mutations and other gene features.
 Depends: R (>= 3.2.5)
 Imports: stringr
 License: GPL-2
 LazyData: true
 RoxygenNote: 5.0.1
 URL: https://bitbucket.org/greymonroe/genemodel
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
