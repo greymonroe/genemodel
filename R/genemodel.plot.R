@@ -10,10 +10,10 @@
 #' @export
 #' @examples
 #' data(AT5G62640)
-#' genemodel.plot(AT5G62640, 25149433, 25152541, "reverse", xaxis=T)
+#' genemodel.plot(AT5G62640, 25149433, 25152541, "reverse", xaxis=TRUE)
 
 
-genemodel.plot<-function(model, start, bpstop, orientation, xaxis=T)
+genemodel.plot<-function(model, start, bpstop, orientation, xaxis=TRUE)
 {
   par(mar=c(1,1,3,1), cex=1)
   model<-cbind(model[,1], as.data.frame(stringr::str_split_fixed(model$coordinates, "-", 2)))

@@ -4,7 +4,7 @@
 \alias{genemodel.plot}
 \title{genemodel.plot}
 \usage{
-genemodel.plot(model, start, bpstop, orientation)
+genemodel.plot(model, start, bpstop, orientation, xaxis = TRUE)
 }
 \arguments{
 \item{model}{data.frame containing model information. Required columns are "type", "coordinates"}
@@ -14,12 +14,14 @@ genemodel.plot(model, start, bpstop, orientation)
 \item{bpstop}{stop position}
 
 \item{orientation}{either "foward" or "reverse" indicates the direction of transcription}
+
+\item{xaxis}{default is TRUE and adds axis above gene model showing position}
 }
 \description{
 This function plots a gene model
 }
 \examples{
 data(AT5G62640)
-genemodel.plot(AT5G62640, 25149433, 25152541, "reverse")
+genemodel.plot(AT5G62640, 25149433, 25152541, "reverse", xaxis=TRUE)
 }
 
