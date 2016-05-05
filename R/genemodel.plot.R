@@ -113,6 +113,6 @@ genemodel.plot<-function(model, start, bpstop, orientation, xaxis=T)
   }
   if (xaxis==T)
   {
-    Axis(side=3, labels=T)
+    Axis(side=3, labels=T, cex.axis=0.5)
     }
 }

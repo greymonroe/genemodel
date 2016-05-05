@@ -41,6 +41,7 @@ head(AT5G62640, 15)
 we see that it is a two column data.frame with the first column being the name of the feature type and the second specifying the coordinate position within the gene model that the feature occupies. 
 
 The feature types that TAIR provides in the `Gene Feature` table for gene models are:
+
 * ORF - the Open Reading Frame which extends from the first to last exon
 * Coding Region - segments of the gene that code RNA  
 * 5` UTR - Untranlated Region.  
@@ -56,15 +57,23 @@ Before we can plot the gene, we need to extract some other information from the 
 
 We now have the information necessary to plot the gene with `genemodel.plot`
 ```{r, fig.width=7.5, fig.height=2}
-par(mar=c(.1,1,.1,1), cex=1)
 genemodel.plot(model=AT5G62640, start=25149433, bpstop=25152541, orientation="reverse", xaxis=T)
 ```
 
 `genemodel.plot` automatically recongizes the types of gene features and plots them in accurate positions and orientation. `genemodel.plot` uses the same color scheme as TAIR to color the gene features. UTRs are colored light blue, exons are colored dark blue and introns are indicated by the bent line. The direction of transcripton is also marked in way consitent with TAIR notation by the pointed end of the gene model. By only plotting UTRs, exons and introns, `genemodel.plot` ignores the 'ORF' and "coding region' feature types as they are redundant. 
 
-### mutation.plot function
+## mutation.plot function
 
 The next function we will look at is the `mutation.plot` function which plots mutations at correct positions on an already plotted gene model. 
+
+
+```{r, fig.width=7.5, fig.height=2}
+genemodel.plot(model=AT5G62640, start=25149433, bpstop=25152541, orientation="reverse", xaxis=T)
+mutation.plot(25150214, 25150214, "P->S", col="black", drop=-.15, haplotypes=c("red"))
+mutation.plot(25150659, 25150659, "L->P", col="black", drop=-.15, haplotypes=c("blue"))
+```
+
+
 
 ## Vignette Info
 
