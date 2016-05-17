@@ -19,5 +19,5 @@ mutation.plot<-function(start, stop, text="", drop=-0.15, col="red", haplotypes=
 {
   rect(start, .2, stop, drop+.01*length(haplotypes), col=col, border=col)
   text( stop, drop, text, cex=0.7, col=col, pos=4, offset=0.1+.1*length(haplotypes))
-  for (i in 1:length(haplotypes)) points(stop, drop-0.05+(i-1)*0.1, col=haplotypes[i], pch=20, cex=1)
+  for (i in 1:length(haplotypes)) points(stop, drop-0.05+(i-1)*0.1, col=haplotypes[i], pch=20)
 }

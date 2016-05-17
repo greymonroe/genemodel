@@ -24,7 +24,7 @@ library(genemodel)
 
 ### Example  
 Now lets look at an example gene that we are going to model. This is gene is `AT5G62640`. The original gene model information can be found here http://www.arabidopsis.org/servlets/TairObject?type=gene&id=1000654517. It is stored in the `Gene Feature` table on that page. 
-<img src="/Users/greymonroe/Desktop/AT5G62640_TAIR_Features.png" height="300px" width="300px" />  
+<img src="https://jgreymonroe.files.wordpress.com/2016/05/at5g62640_tair_features.png?w=700&h=&crop=1" height="300px" width="300px" />  
 ...  
   
   
@@ -38,7 +38,7 @@ When we look at the strucutre of this data.frame,
 ```{r, eval=T}
 head(AT5G62640, 15)
 ```
-we see that it is a two column data.frame with the first column being the name of the feature type and the second specifying the coordinate position within the gene model that the feature occupies. 
+we see that it is a two column data.frame with the first column, "*type*," containing the name of the feature type and the second,"*coordinates*," specifying the coordinate position within the gene model that the feature occupies. 
 
 The feature types that TAIR provides in the `Gene Feature` table for gene models are:
 
@@ -52,7 +52,7 @@ The feature types that TAIR provides in the `Gene Feature` table for gene models
 ### genemodel.plot function
 
 Before we can plot the gene, we need to extract some other information from the TAIR gene model description. First we need the start and stop base pair positions for the gene. These can be found in the `Map Locations` section of the TAIR gene model page and correspond to the `Coordinates` of  `Map Type`  'nuc_sequence.' Next weed the direction of transcription which can also be found in the `Map Locations` section under `Orientation`. Again we want the value for corresponding the `Map Type` that equals 'nuc_sequence' See image below from TAIR.
-<img src="/Users/greymonroe/Desktop/AT5G62640_TAIR_Map_Locations.png" height="50px" width="700px" />  
+<img src="https://jgreymonroe.files.wordpress.com/2016/05/at5g62640_tair_map_locations.png?w=1000&h=&crop=1" height="50px" width="700px" />  
 
 
 We now have the information necessary to plot the gene with `genemodel.plot`
@@ -60,7 +60,24 @@ We now have the information necessary to plot the gene with `genemodel.plot`
 genemodel.plot(model=AT5G62640, start=25149433, bpstop=25152541, orientation="reverse", xaxis=T)
 ```
 
-`genemodel.plot` automatically recongizes the types of gene features and plots them in accurate positions and orientation. `genemodel.plot` uses the same color scheme as TAIR to color the gene features. UTRs are colored light blue, exons are colored dark blue and introns are indicated by the bent line. The direction of transcripton is also marked in way consitent with TAIR notation by the pointed end of the gene model. By only plotting UTRs, exons and introns, `genemodel.plot` ignores the 'ORF' and "coding region' feature types as they are redundant. 
+`genemodel.plot` automatically recongizes the types of gene features found in TAIR gene models and plots them in accurate positions and orientation. By default, UTRs are colored light blue, exons are colored dark blue and introns are indicated by the bent line. The direction of transcripton is also marked in way consitent with TAIR notation by the pointed end of the gene model. By only plotting UTRs, coding region and introns, `genemodel.plot` ignores the 'ORF' and "exon' feature types as they are redundant. 
+
+### Alternative splicing
+
+With a little creativity, it is easy to imagine using genemodel to plot such things as alternative splicing. For example, an exon and it's neighboring introns can be removed and replaced by a sinlge intron to create a plot showing a different splice variant.
+
+```{r}
+spl1<-data.frame(
+  type=c("5' utr", "coding_region", "intron", "coding_region", "intron", "coding_region","3' utr"), 
+  coordinates=c("1-50", "50-100", "100-150", "150-200", "200-250", "250-300","300-350"))
+
+spl2<-data.frame(
+  type=c("5' utr", "coding_region", "intron","coding_region","3' utr"), coordinates=c("1-50", "50-100", "100-250", "250-300","300-350"))
+par(mfrow=c(2,1))
+genemodel.plot(model=spl1, start=1, bpstop=350, orientation="reverse", xaxis=T)
+genemodel.plot(model=spl2, start=1, bpstop=350, orientation="reverse", xaxis=F)
+```
+
 
 ## mutation.plot function
 
@@ -69,50 +86,11 @@ The next function we will look at is the `mutation.plot` function which plots mu
 
 ```{r, fig.width=7.5, fig.height=2}
 genemodel.plot(model=AT5G62640, start=25149433, bpstop=25152541, orientation="reverse", xaxis=T)
-mutation.plot(25150214, 25150214, "P->S", col="black", drop=-.15, haplotypes=c("red"))
-mutation.plot(25150659, 25150659, "L->P", col="black", drop=-.15, haplotypes=c("blue"))
+mutation.plot(25150214, 25150214, text="P->S", col="black", drop=-.15, haplotypes=c("red", "blue"))
+mutation.plot(25150659, 25150659, text="V->S", col="black", drop=-.15, haplotypes=c("red"))
+mutation.plot(25150639, 25150639, text="L->P", col="black", drop=-.35, haplotypes=c("blue"))
 ```
 
 
+`mutation.plot` adds mutations to a prexisting gene model plot. In this example, amino acid substitutions are shown at exact positions. The colored dots correspond to the hapolotype group that has this mutation. The `drop` parameter can be used to offset the positionin of close mutation for easy visualization.
 
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
-```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
