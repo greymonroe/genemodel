@@ -1,7 +1,7 @@
 Package: genemodel
 Title: Gene model plotting in R
 Date: 2016-05-17
-Version: 0.0.1.000
+Version: 1.0.0.000
 Authors@R: person("J Grey", "Monroe", email = "greymonroe@gmail.com", role = c("aut", "cre"))
 Description: This package creates publication worthy plots of gene models. Users can create plots of alternatively spliced gene variants and the positions of mutations and other gene features.
 Depends: R (>= 3.2.5)
