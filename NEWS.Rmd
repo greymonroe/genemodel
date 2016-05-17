@@ -2,13 +2,11 @@
 title: "NEWS"
 author: "Grey Monroe"
 date: "May 17, 2016"
-output: html_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# genemodel 1.0.0.000
-
-Origninal release. 
+# genemodel 1.0.0.000 Intial release (05-27-2016)

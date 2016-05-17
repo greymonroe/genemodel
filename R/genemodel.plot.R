@@ -7,6 +7,7 @@
 #' @param bpstop stop position
 #' @param orientation either "foward" or "reverse" indicates the direction of transcription
 #' @param xaxis default is TRUE and adds axis above gene model showing position
+#' @import graphics
 #' @export
 #' @examples
 #' data(AT5G62640)
