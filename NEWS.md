@@ -1,5 +1,5 @@
-genemodel 1.1.0.000 Updated release (02-20-2017)
-================================================
+genemodel 1.1.0 Updated release (02-20-2017)
+============================================
 
 Moved development repository to github
 <https://github.com/greymonroe/genemodel>
